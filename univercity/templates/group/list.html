@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+            {% include 'header.html' %}
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Groups</h2>
+                                    <a href="{% url 'group_create' %}" class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>add</a>
+                                </div>
+
+                                <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Number</th>
+                                                <th>Direction</th>
+                                                <th class="text-right">Tahrir</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for group in groups %}
+                                            <tr>
+                                                <td>{{ group.id }}</td>
+                                                <td>{{ group.number }}</td>
+                                                <td>{{ group.direction }}</td>
+                                                <td class="text-right">
+                                                    <div class="table-data-feature">
+                                                        <a href="{% url 'group_edit' pk=group.id %}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </a>
+                                                        <a href="{% url 'group_delete' pk=group.id %}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+{% endblock %}

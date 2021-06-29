@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+            {% include 'header.html' %}
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">students</h2>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Create student</strong> Form
+                                    </div>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <div class="card-body card-block">
+                                            <div class="has-success form-student">
+                                                <label for="inputIsValid" class=" form-control-label">Input is student first name</label>
+                                                {{ form.first_name }}
+                                            </div>
+                                        </div>
+                                        <div class="card-body card-block">
+                                            <div class="has-success form-student">
+                                                <label for="inputIsValid" class=" form-control-label">Input is student last name</label>
+                                                {{ form.last_name }}
+                                            </div>
+                                        </div>
+                                        <div class="card-body card-block">
+                                            <div class="has-success form-student">
+                                                <label for="inputIsValid" class=" form-control-label">Input is student age</label>
+                                                {{ form.age }}
+                                            </div>
+                                        </div>
+                                        <div class="card-body card-block">
+                                            <div class="has-success form-student">
+                                                <label for="inputIsValid" class=" form-control-label">Input is subject</label>
+                                                {{ form.group }}
+                                            </div>
+                                        </div>>
+                                        {% if model %}
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> Save </button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> Add </button>
+                                        {% endif %}
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+{% endblock %}

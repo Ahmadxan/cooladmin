@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+            {% include 'header.html' %}
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Subjects</h2>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Create subject</strong> Form
+                                    </div>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <div class="card-body card-block">
+                                            <div class="has-success form-group">
+                                                <label for="inputIsValid" class=" form-control-label">Input is subject name</label>
+                                                {{ form.name }}
+                                            </div>
+                                        </div>
+                                        {% if model %}
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> Save </button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> Add </button>
+                                        {% endif %}
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+{% endblock %}

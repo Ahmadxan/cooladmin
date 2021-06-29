@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+            {% include 'header.html' %}
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Faculties</h2>
+                                    <a href="{% url 'direction_create' %}" class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>add</a>
+                                </div>
+
+                                <table class="table table-borderless table-striped table-earning">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Faculty</th>
+                                            <th class="text-right">Tahrir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for direction in directions %}
+                                        <tr>
+                                            <td>{{ direction.id }}</td>
+                                            <td>{{ direction.name }}</td>
+                                            <td>{{ direction.faculty }}</td>
+                                            <td class="text-right">
+                                                <div class="table-data-feature">
+                                                    <a href="{% url 'direction_edit' pk=direction.id %}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </a>
+                                                    <a href="{% url 'direction_delete' pk=direction.id %}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+{% endblock %}
