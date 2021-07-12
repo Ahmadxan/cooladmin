@@ -11,7 +11,7 @@ from .models import (Faculty,
 from .forms import FacultyForm, DirectionForm, SubjectForm, TeacherForm, GroupForm, StudentForm
 
 def login_required_decorator(func):
-    return login_required(func)
+    return login_required( func, login_url='login_page')
 
 def login_page(request):
     username = request.POST.get('username', None)
@@ -29,7 +29,38 @@ def login_out(request):
 
 @login_required_decorator
 def index_page(request):
-    return render(request, 'index.html')
+    faculty = Faculty.objects.all()
+    student = Student.objects.all()
+    teacher = Teacher.objects.all()
+    subject = Subject.objects.all()
+    groups = Group.objects.all()
+    directions = Direction.objects.all()
+
+    group_student = []
+    for group in groups:
+        group_student.append({
+            'group': group.number,
+            'student': len(Student.objects.filter(group_id=group.id))
+        })
+
+    direction_teacher = []
+    for direction in directions:
+        direction_teacher.append({
+            'direction': direction,
+            'teacher': len(Teacher.objects.filter(direction_id=direction.id))
+        })
+
+    ctx = {
+        'counts':{
+            'faculty': len(faculty),
+            'student': len(student),
+            'teacher': len(teacher),
+            'subject': len(subject),
+        },
+        'group_student': group_student,
+        'direction_teacher': direction_teacher,
+    }
+    return render(request, 'index.html', ctx)
 
 
 @login_required_decorator
